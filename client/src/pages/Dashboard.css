@@ -1,0 +1,207 @@
+.dashboard-page {
+    padding: 100px 0 60px;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.dashboard-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.dashboard-header p {
+    color: var(--gray-500);
+}
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.dash-stat {
+    background: white;
+    border-radius: var(--card-radius);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: var(--shadow-sm);
+}
+
+.dash-stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dash-stat-value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--dark);
+}
+
+.dash-stat-label {
+    font-size: 0.8rem;
+    color: var(--gray-400);
+}
+
+.dashboard-tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--gray-100);
+    padding: 4px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    width: fit-content;
+}
+
+.dash-tab {
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--gray-500);
+    background: transparent;
+    transition: all 0.3s;
+}
+
+.dash-tab.active {
+    background: white;
+    color: var(--dark);
+    box-shadow: var(--shadow-sm);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.store-form,
+.create-store-prompt {
+    padding: 28px;
+}
+
+.store-form h3 {
+    margin-bottom: 20px;
+}
+
+.dashboard-product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dash-product-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+}
+
+.dash-product-item img {
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.dash-product-info {
+    flex: 1;
+}
+
+.dash-product-info h4 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.dash-product-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.85rem;
+    color: var(--gray-500);
+}
+
+.dashboard-orders {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.dash-order-item {
+    padding: 20px;
+}
+
+.dash-order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.dash-order-date {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--gray-400);
+    margin-top: 2px;
+}
+
+.status-select {
+    padding: 6px 12px;
+    border: 2px solid var(--gray-200);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    text-transform: capitalize;
+    background: white;
+    cursor: pointer;
+}
+
+.dash-order-items {
+    border-top: 1px solid var(--gray-100);
+    border-bottom: 1px solid var(--gray-100);
+    padding: 12px 0;
+    margin-bottom: 12px;
+}
+
+.dash-order-product {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    padding: 4px 0;
+}
+
+.dash-order-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--gray-500);
+}
+
+@media (max-width: 768px) {
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,153 @@
+.marketplace-page {
+    padding-top: 64px;
+}
+
+.marketplace-hero {
+    background: linear-gradient(135deg, var(--dark), var(--dark-light));
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.marketplace-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.marketplace-hero p {
+    color: var(--gray-400);
+    margin-bottom: 32px;
+}
+
+.marketplace-search {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 500px;
+    margin: 0 auto;
+    background: var(--dark-lighter);
+    border: 2px solid var(--dark-lighter);
+    border-radius: 14px;
+    padding: 12px 20px;
+    transition: border-color 0.3s;
+}
+
+.marketplace-search:focus-within {
+    border-color: var(--crimson);
+}
+
+.marketplace-search input {
+    flex: 1;
+    background: transparent;
+    color: white;
+    font-size: 1rem;
+}
+
+.marketplace-search input::placeholder {
+    color: var(--gray-500);
+}
+
+.marketplace-search svg {
+    color: var(--gray-400);
+}
+
+.marketplace-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.category-tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.cat-tab {
+    padding: 8px 18px;
+    border-radius: 10px;
+    background: var(--gray-100);
+    color: var(--gray-600);
+    font-weight: 500;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    text-transform: capitalize;
+    transition: all 0.3s;
+}
+
+.cat-tab:hover {
+    background: var(--gray-200);
+}
+
+.cat-tab.active {
+    background: var(--crimson);
+    color: white;
+}
+
+.view-toggle {
+    display: flex;
+    background: var(--gray-100);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.view-toggle button {
+    padding: 8px 18px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    background: transparent;
+    transition: all 0.3s;
+}
+
+.view-toggle button.active {
+    background: var(--dark);
+    color: white;
+}
+
+.quick-add {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    background: var(--crimson);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s var(--ease-out);
+}
+
+.card:hover .quick-add {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.quick-add.added {
+    background: var(--success);
+}
+
+.product-card-img {
+    position: relative;
+}
+
+@media (max-width: 640px) {
+    .marketplace-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .category-tabs {
+        flex-wrap: nowrap;
+    }
+}

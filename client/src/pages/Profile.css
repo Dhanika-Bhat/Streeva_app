@@ -1,0 +1,185 @@
+.profile-page {
+    padding: 100px 0 60px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.profile-card {
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.profile-avatar {
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, var(--crimson), var(--crimson-dark));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+}
+
+.profile-card h1 {
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+}
+
+.profile-email {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: var(--gray-500);
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.profile-orders h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+.order-card {
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.order-date {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.8rem;
+    color: var(--gray-400);
+    margin-top: 2px;
+}
+
+.order-status {
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.status-pending {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning);
+}
+
+.status-confirmed {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--info);
+}
+
+.status-shipped {
+    background: rgba(139, 92, 246, 0.1);
+    color: #8B5CF6;
+}
+
+.status-delivered {
+    background: rgba(34, 197, 94, 0.1);
+    color: var(--success);
+}
+
+.status-cancelled {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error);
+}
+
+.order-items-list {
+    border-top: 1px solid var(--gray-100);
+    padding-top: 12px;
+}
+
+.order-item-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+}
+
+.order-item-row img {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.order-total {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--gray-100);
+    padding-top: 12px;
+    margin-top: 8px;
+    font-weight: 700;
+}
+
+/* Order Tracking Progress Bar */
+.order-tracking {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    position: relative;
+    padding: 0 10px;
+}
+
+.tracking-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    width: 25%;
+}
+
+.tracking-dot {
+    width: 16px;
+    height: 16px;
+    background: var(--gray-200);
+    border-radius: 50%;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+
+.tracking-step.active .tracking-dot {
+    background: var(--crimson);
+    box-shadow: 0 0 0 4px rgba(220, 20, 60, 0.2);
+}
+
+.tracking-label {
+    font-size: 0.75rem;
+    color: var(--gray-400);
+    font-weight: 500;
+}
+
+.tracking-step.active .tracking-label {
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.tracking-line {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background: var(--gray-200);
+    z-index: -1;
+}
+
+.tracking-step.active .tracking-line {
+    background: var(--crimson);
+}

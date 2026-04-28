@@ -1,0 +1,70 @@
+.store-detail-page {
+    padding-top: 64px;
+}
+
+.store-banner {
+    height: 360px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.store-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26, 26, 46, 0.95), rgba(26, 26, 46, 0.4));
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 40px;
+}
+
+.back-link {
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    margin-bottom: 20px;
+}
+
+.back-link:hover {
+    border-color: white !important;
+}
+
+.store-banner h1 {
+    font-size: 2.5rem;
+    color: white;
+    font-weight: 800;
+}
+
+.store-desc {
+    color: var(--gray-300);
+    font-size: 1rem;
+    margin-bottom: 16px;
+    max-width: 600px;
+}
+
+.store-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    color: var(--gray-400);
+    font-size: 0.9rem;
+}
+
+.store-meta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.store-meta .stars {
+    color: var(--gold);
+}
+
+@media (max-width: 640px) {
+    .store-banner {
+        height: 280px;
+    }
+
+    .store-banner h1 {
+        font-size: 1.8rem;
+    }
+}

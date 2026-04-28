@@ -1,0 +1,15 @@
+{
+    "name": "streeva",
+    "version": "1.0.0",
+    "description": "Empowering Women Entrepreneurs — E-Commerce Platform",
+    "scripts": {
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
+        "server": "cd server && node index.js",
+        "client": "cd client && npm run dev",
+        "seed": "cd server && node seed.js",
+        "build": "cd client && npm run build"
+    },
+    "dependencies": {
+        "concurrently": "^9.0.0"
+    }
+}

@@ -1,0 +1,44 @@
+======================================================
+STREEVA PLATFORM - PROJECT EXPLANATION & ARCHITECTURE
+======================================================
+
+1. OVERVIEW
+Streeva is a full-stack MERN (MongoDB, Express.js, React.js, Node.js) e-commerce web application specifically designed to empower women entrepreneurs. It features a product marketplace, interactive store mapping, an inspiring story blog, an advanced AI shopping assistant, and a highly secure authentication ecosystem.
+
+------------------------------------------------------
+
+2. ADVANCED AI CHATBOT WORKING MECHANISM (Gemini AI)
+The Streeva Assistant is not a generic chatbot. It is a Context-Aware Recommender System powered by Google's Gemini LLM.
+
+How it works behind the scenes:
+- Database Interception: When a user types a message in the frontend `ChatWidget`, the request hits the backend route (`server/routes/chat.js`).
+- Live Data Fetching: Before sending the user's message to the AI, the backend dynamically queries MongoDB for the live list of all Stores (names, locations, ratings) and Products (names, prices).
+- Prompt Injection: This live data is formatted into a massive hidden "System Prompt". The AI is instructed: "You are the Streeva Assistant. Here is exactly what is in the database right now."
+- AI Processing: Gemini processes the user's specific query (e.g., "What clothing stores exist?") by referencing our injected database constraint.
+- Frontend Rendering: The AI responds using Markdown. Our React frontend utilizes the `react-markdown` library to parse this raw text into beautiful HTML bullet points and bold text for the user to read natively.
+
+------------------------------------------------------
+
+3. TWO-STEP AUTHENTICATION (Email OTP Verification)
+To prevent the creation of fake spam accounts, Streeva employs a robust 2-Step Verification mechanism using Email One-Time-Passwords (OTPs).
+
+How it works behind the scenes:
+- Registration Trigger: When a user hits "Create Account", they are NOT logged in. Instead, their details are saved to MongoDB with `isEmailVerified` turned to `false`. 
+- OTP Generation: The backend generates a secure 6-digit random number and assigns a 10-minute expiry window. 
+- Nodemailer Email Delivery: The backend uses the `nodemailer` library to send this OTP. To ensure the presentation works without complicated email configuration, it utilizes an "Ethereal Test Mailbox"—a developer tool that intercepts emails so we don't accidentally spam real inboxes.
+- React UI Swapping: The backend returns `{ requireOtp: true }` to the frontend. The `Register.jsx` React component detects this flag and instantly swaps out the Registration Form for a secure OTP Input Overlay.
+- (Presentation Bypass Mode): Currently, the strict mathematical matching logic inside `server/routes/auth.js` is temporarily bypassed to allow ANY 6-digit number to successfully log you in instantly. This is vital for flawless, rapid presentations!
+
+------------------------------------------------------
+
+4. STREEVA SECURE PAY (Custom Payment Gateway)
+We avoid third-party transaction fees (like Razorpay) by utilizing our own custom-built "Local Simulator Gateway".
+- When proceeding to checkout, a beautiful React Modal drops down requesting mock UPI or Card details.
+- When submitted, the system triggers a JavaScript `setTimeout` to mimic realistic banking network delays.
+- Upon completion, the system automatically tags the order with an internal simulation ID (e.g., `txn_streeva_9XYZ`) and commits the order permanently to the database.
+
+------------------------------------------------------
+
+5. BLOG & MARKETPLACE
+- We use a database seeding script (`server/seed.js`) to rapidly populate MongoDB with diverse hypothetical stores (Pottery, Tech, Organic Farming) to provide a rich marketplace demonstration.
+- A newly integrated `/blog` page uses modern Glassmorphism CSS and Framer Motion animations to beautifully display the biographies of real Indian women entrepreneurs (Biocon, Nykaa, etc.).
