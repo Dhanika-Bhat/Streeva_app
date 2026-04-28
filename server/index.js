@@ -8,7 +8,21 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+// Allow frontend origin from env (set CLIENT_URL on Render to your Vercel URL)
+const allowedOrigins = [
+    process.env.CLIENT_URL,
+    'http://localhost:5173',
+    'http://localhost:3000',
+].filter(Boolean);
+
+app.use(cors({
+    origin: (origin, callback) => {
+        // allow requests with no origin (mobile apps, curl, Postman)
+        if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+        callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
+}));
 app.use(express.json({ limit: '10mb' }));
 
 // Routes

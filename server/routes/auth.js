@@ -126,9 +126,11 @@ router.post('/verify-otp', async (req, res) => {
 
         if (!user) return res.status(400).json({ message: 'User not found' });
         
-        // 🔴 PRESENTATION HACK: Only accept literal "798654"
-        if (otp !== '798654') {
+        if (!user.otp || user.otp !== otp) {
             return res.status(400).json({ message: 'Invalid OTP' });
+        }
+        if (user.otpExpires < Date.now()) {
+            return res.status(400).json({ message: 'OTP has expired. Please register again.' });
         }
 
         user.isEmailVerified = true;
