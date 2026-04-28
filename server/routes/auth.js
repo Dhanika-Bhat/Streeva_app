@@ -63,26 +63,21 @@ router.post('/register', async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        // Generate OTP
-        const otp = Math.floor(100000 + Math.random() * 900000).toString();
-        const otpExpires = Date.now() + 10 * 60 * 1000; // 10 mins
-
         const user = new User({ 
             name, 
             email, 
             password: hashedPassword, 
             role: role || 'customer',
-            otp,
-            otpExpires,
-            isEmailVerified: false
+            isEmailVerified: true
         });
         await user.save();
 
-        await sendOTP(email, otp);
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET || 'streeva_secret_key_2024', { expiresIn: '7d' });
 
         res.status(201).json({ 
-            requireOtp: true, 
-            message: 'OTP sent to your email. Please verify to continue.' 
+            message: 'User registered successfully',
+            token,
+            user: { id: user._id, name: user.name, email: user.email, role: user.role, avatar: user.avatar }
         });
     } catch (err) {
         res.status(500).json({ message: 'Server error', error: err.message });
@@ -99,14 +94,7 @@ router.post('/login', async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
 
-        if (!user.isEmailVerified) {
-            const otp = Math.floor(100000 + Math.random() * 900000).toString();
-            user.otp = otp;
-            user.otpExpires = Date.now() + 10 * 60 * 1000;
-            await user.save();
-            await sendOTP(email, otp);
-            return res.status(200).json({ requireOtp: true, message: 'Please verify your email to login. OTP sent.' });
-        }
+
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET || 'streeva_secret_key_2024', { expiresIn: '7d' });
 

@@ -40,7 +40,10 @@ export function AuthProvider({ children }) {
 
     const register = async (name, email, password, role) => {
         const res = await API.post('/auth/register', { name, email, password, role });
-        // OTP Required Instead of auto-login
+        if (res.data.token && res.data.user) {
+            localStorage.setItem('streeva_token', res.data.token);
+            setUser(res.data.user);
+        }
         return res.data;
     };
 
