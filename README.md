@@ -68,3 +68,4 @@ This will concurrently start:
 ## 🤝 Contributing
 
 Built with ❤️ for women entrepreneurs.
+Created by Dhanika-Bhat and Yash
