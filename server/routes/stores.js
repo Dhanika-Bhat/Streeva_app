@@ -5,6 +5,17 @@ const { auth, entrepreneurOnly } = require('../middleware/auth');
 
 const router = express.Router();
 
+// Get my store (entrepreneur dashboard)
+router.get('/me', auth, entrepreneurOnly, async (req, res) => {
+    try {
+        const store = await Store.findOne({ owner: req.user._id });
+        if (!store) return res.status(404).json({ message: 'No store found' });
+        res.json(store);
+    } catch (err) {
+        res.status(500).json({ message: 'Server error', error: err.message });
+    }
+});
+
 // Get all stores (with optional geo query)
 router.get('/', async (req, res) => {
     try {

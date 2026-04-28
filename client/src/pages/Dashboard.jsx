@@ -25,8 +25,8 @@ export default function Dashboard() {
 
     const fetchData = async () => {
         try {
-            const storeRes = await API.get('/stores');
-            const myStore = storeRes.data.find(s => s.owner?._id === user.id || s.owner === user.id);
+            const storeRes = await API.get('/stores/me');
+            const myStore = storeRes.data;
             if (myStore) {
                 setStore(myStore);
                 const [prodRes, orderRes] = await Promise.all([
@@ -36,8 +36,11 @@ export default function Dashboard() {
                 setProducts(prodRes.data);
                 setOrders(orderRes.data);
             }
-        } catch (err) { console.error(err); }
-        finally { setLoading(false); }
+        } catch (err) { 
+            if (err.response?.status !== 404) console.error(err);
+        } finally { 
+            setLoading(false); 
+        }
     };
 
     const handleCreateStore = async (e) => {
