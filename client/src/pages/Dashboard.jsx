@@ -79,7 +79,9 @@ export default function Dashboard() {
 
     if (loading) return <div style={{ paddingTop: '120px' }}><div className="spinner"></div></div>;
 
-    const totalRevenue = orders.reduce((sum, o) => sum + o.totalAmount, 0);
+    const totalRevenue = orders
+        .filter(o => o.status !== 'cancelled')
+        .reduce((sum, o) => sum + o.totalAmount, 0);
 
     return (
         <div className="dashboard-page">
